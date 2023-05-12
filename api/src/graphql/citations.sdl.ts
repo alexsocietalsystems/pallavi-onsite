@@ -9,7 +9,7 @@ export const schema = gql`
     createdAt: DateTime!
   }
 
-  type CitationResponse { 
+  type CitationResponse {
     citation: Citation
     citationExists: Boolean!
   }
@@ -17,7 +17,7 @@ export const schema = gql`
   type Query {
     citations: [Citation!]! @requireAuth
     citation(id: Int!): Citation @requireAuth
-    getCitationByNumberAndDriverName(citationNumber: String!, driverName: String!): CitationResponse @requireAuth
+    getCitationByNumberAndDriverName(citationNumber: String!, driverName: String!): CitationResponse @skipAuth
   }
 
   input CreateCitationInput {

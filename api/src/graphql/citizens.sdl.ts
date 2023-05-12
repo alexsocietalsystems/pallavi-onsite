@@ -31,7 +31,7 @@ export const schema = gql`
   }
 
   type Mutation {
-    createCitizen(input: CreateCitizenInput!): Citizen! @requireAuth
+    createCitizen(input: CreateCitizenInput!): Citizen! @skipAuth
     updateCitizen(id: Int!, input: UpdateCitizenInput!): Citizen! @requireAuth
     deleteCitizen(id: Int!): Citizen! @requireAuth
   }
