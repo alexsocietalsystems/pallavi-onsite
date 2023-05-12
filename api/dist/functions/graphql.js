@@ -30,6 +30,7 @@ __export(graphql_exports, {
   handler: () => handler
 });
 module.exports = __toCommonJS(graphql_exports);
+var import_auth_dbauth_api = require("@redwoodjs/auth-dbauth-api");
 var import_graphql_server = require("@redwoodjs/graphql-server");
 var directives_requireAuth_requireAuth = __toESM(require("../directives/requireAuth/requireAuth"));
 var directives_skipAuth_skipAuth = __toESM(require("../directives/skipAuth/skipAuth"));
@@ -41,6 +42,7 @@ var services_citations_citations = __toESM(require("../services/citations/citati
 var services_courts_courts = __toESM(require("../services/courts/courts"));
 var services_messages_messages = __toESM(require("../services/messages/messages"));
 var services_users_users = __toESM(require("../services/users/users"));
+var import_auth = require("../lib/auth");
 var import_db = require("../lib/db");
 var import_logger = require("../lib/logger");
 let directives = {};
@@ -57,6 +59,8 @@ services.courts_courts = services_courts_courts;
 services.messages_messages = services_messages_messages;
 services.users_users = services_users_users;
 const handler = (0, import_graphql_server.createGraphQLHandler)({
+  authDecoder: import_auth_dbauth_api.authDecoder,
+  getCurrentUser: import_auth.getCurrentUser,
   loggerConfig: {
     logger: import_logger.logger,
     options: {}
