@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/graphql/courts.sdl.ts"],
-  "sourcesContent": ["export const schema = gql`\n  type Court {\n    id: Int!\n    street_address: String!\n    court_name: String!\n    citations: [Citation]!\n    createdAt: DateTime!\n  }\n\n  type Query {\n    courts: [Court!]! @requireAuth\n    court(id: Int!): Court @requireAuth\n  }\n\n  input CreateCourtInput {\n    street_address: String!\n    court_name: String!\n  }\n\n  input UpdateCourtInput {\n    street_address: String\n    court_name: String\n  }\n\n  type Mutation {\n    createCourt(input: CreateCourtInput!): Court! @requireAuth\n    updateCourt(id: Int!, input: UpdateCourtInput!): Court! @requireAuth\n    deleteCourt(id: Int!): Court! @requireAuth\n  }\n`\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;yBAAyB;AAAlB,MAAMA,SAASC,mBAAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
-  "names": ["schema", "gql"]
-}

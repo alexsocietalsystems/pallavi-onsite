@@ -44,3 +44,13 @@ model Citizen {
   citation Citation @relation(fields: [citation_id], references: [id])
   notifications  Boolean    @default(false)
 }
+
+model User {
+  id                  Int       @id @default(autoincrement())
+  name                String?
+  email               String    @unique
+  hashedPassword      String
+  salt                String
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
+}
