@@ -50,6 +50,13 @@ input CreateMessageInput {
   timeUnit: String!
 }
 
+input CreateUserInput {
+  citation_id: Int!
+  email: String!
+  name: String!
+  phoneNumber: String!
+}
+
 scalar Date
 
 scalar DateTime
@@ -70,12 +77,15 @@ type Mutation {
   createCitation(input: CreateCitationInput!): Citation!
   createCourt(input: CreateCourtInput!): Court!
   createMessage(input: CreateMessageInput!): Message!
+  createUser(input: CreateUserInput!): User!
   deleteCitation(id: Int!): Citation!
   deleteCourt(id: Int!): Court!
   deleteMessage(id: Int!): Message!
+  deleteUser(id: Int!): User!
   updateCitation(id: Int!, input: UpdateCitationInput!): Citation!
   updateCourt(id: Int!, input: UpdateCourtInput!): Court!
   updateMessage(id: Int!, input: UpdateMessageInput!): Message!
+  updateUser(id: Int!, input: UpdateUserInput!): User!
 }
 
 """About the Redwood queries."""
@@ -90,6 +100,8 @@ type Query {
 
   """Fetches the Redwood root schema."""
   redwood: Redwood
+  user(id: Int!): User
+  users: [User!]!
 }
 
 """
@@ -126,4 +138,20 @@ input UpdateMessageInput {
   countBefore: Int
   messageTemplate: String
   timeUnit: String
+}
+
+input UpdateUserInput {
+  citation_id: Int
+  email: String
+  name: String
+  phoneNumber: String
+}
+
+type User {
+  citation: Citation!
+  citation_id: Int!
+  email: String!
+  id: Int!
+  name: String!
+  phoneNumber: String!
 }

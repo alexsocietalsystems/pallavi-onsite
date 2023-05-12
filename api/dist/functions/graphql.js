@@ -36,9 +36,11 @@ var directives_skipAuth_skipAuth = __toESM(require("../directives/skipAuth/skipA
 var sdls_citations_sdl = __toESM(require("../graphql/citations.sdl"));
 var sdls_courts_sdl = __toESM(require("../graphql/courts.sdl"));
 var sdls_messages_sdl = __toESM(require("../graphql/messages.sdl"));
+var sdls_users_sdl = __toESM(require("../graphql/users.sdl"));
 var services_citations_citations = __toESM(require("../services/citations/citations"));
 var services_courts_courts = __toESM(require("../services/courts/courts"));
 var services_messages_messages = __toESM(require("../services/messages/messages"));
+var services_users_users = __toESM(require("../services/users/users"));
 var import_db = require("../lib/db");
 var import_logger = require("../lib/logger");
 let directives = {};
@@ -48,10 +50,12 @@ let sdls = {};
 sdls.citations_sdl = sdls_citations_sdl;
 sdls.courts_sdl = sdls_courts_sdl;
 sdls.messages_sdl = sdls_messages_sdl;
+sdls.users_sdl = sdls_users_sdl;
 let services = {};
 services.citations_citations = services_citations_citations;
 services.courts_courts = services_courts_courts;
 services.messages_messages = services_messages_messages;
+services.users_users = services_users_users;
 const handler = (0, import_graphql_server.createGraphQLHandler)({
   loggerConfig: {
     logger: import_logger.logger,

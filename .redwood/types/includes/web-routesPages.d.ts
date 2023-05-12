@@ -14,6 +14,10 @@ import MessageEditMessagePageType from '/Users/alex/pallavi-onsite/web/src/pages
 import MessageMessagePageType from '/Users/alex/pallavi-onsite/web/src/pages/Message/MessagePage/MessagePage'
 import MessageMessagesPageType from '/Users/alex/pallavi-onsite/web/src/pages/Message/MessagesPage/MessagesPage'
 import MessageNewMessagePageType from '/Users/alex/pallavi-onsite/web/src/pages/Message/NewMessagePage/NewMessagePage'
+import UserEditUserPageType from '/Users/alex/pallavi-onsite/web/src/pages/User/EditUserPage/EditUserPage'
+import UserNewUserPageType from '/Users/alex/pallavi-onsite/web/src/pages/User/NewUserPage/NewUserPage'
+import UserUserPageType from '/Users/alex/pallavi-onsite/web/src/pages/User/UserPage/UserPage'
+import UserUsersPageType from '/Users/alex/pallavi-onsite/web/src/pages/User/UsersPage/UsersPage'
 
 declare global {
   const FatalErrorPage: typeof FatalErrorPageType
@@ -31,4 +35,8 @@ declare global {
   const MessageMessagePage: typeof MessageMessagePageType
   const MessageMessagesPage: typeof MessageMessagesPageType
   const MessageNewMessagePage: typeof MessageNewMessagePageType
+  const UserEditUserPage: typeof UserEditUserPageType
+  const UserNewUserPage: typeof UserNewUserPageType
+  const UserUserPage: typeof UserUserPageType
+  const UserUsersPage: typeof UserUsersPageType
 }

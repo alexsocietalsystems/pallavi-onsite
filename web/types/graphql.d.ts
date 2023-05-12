@@ -30,6 +30,12 @@ export type Citation = {
   id: Scalars['Int'];
 };
 
+export type CitationResponse = {
+  __typename?: 'CitationResponse';
+  citation?: Maybe<Citation>;
+  citationExists: Scalars['Boolean'];
+};
+
 export type Court = {
   __typename?: 'Court';
   citations: Array<Maybe<Citation>>;
@@ -57,6 +63,13 @@ export type CreateMessageInput = {
   timeUnit: Scalars['String'];
 };
 
+export type CreateUserInput = {
+  citation_id: Scalars['Int'];
+  email: Scalars['String'];
+  name: Scalars['String'];
+  phoneNumber: Scalars['String'];
+};
+
 export type Message = {
   __typename?: 'Message';
   countBefore: Scalars['Int'];
@@ -71,12 +84,15 @@ export type Mutation = {
   createCitation: Citation;
   createCourt: Court;
   createMessage: Message;
+  createUser: User;
   deleteCitation: Citation;
   deleteCourt: Court;
   deleteMessage: Message;
+  deleteUser: User;
   updateCitation: Citation;
   updateCourt: Court;
   updateMessage: Message;
+  updateUser: User;
 };
 
 
@@ -95,6 +111,11 @@ export type MutationcreateMessageArgs = {
 };
 
 
+export type MutationcreateUserArgs = {
+  input: CreateUserInput;
+};
+
+
 export type MutationdeleteCitationArgs = {
   id: Scalars['Int'];
 };
@@ -106,6 +127,11 @@ export type MutationdeleteCourtArgs = {
 
 
 export type MutationdeleteMessageArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationdeleteUserArgs = {
   id: Scalars['Int'];
 };
 
@@ -127,6 +153,12 @@ export type MutationupdateMessageArgs = {
   input: UpdateMessageInput;
 };
 
+
+export type MutationupdateUserArgs = {
+  id: Scalars['Int'];
+  input: UpdateUserInput;
+};
+
 /** About the Redwood queries. */
 export type Query = {
   __typename?: 'Query';
@@ -134,11 +166,13 @@ export type Query = {
   citations: Array<Citation>;
   court?: Maybe<Court>;
   courts: Array<Court>;
-  getCitationByNumberAndDriverName?: Maybe<Citation>;
+  getCitationByNumberAndDriverName?: Maybe<CitationResponse>;
   message?: Maybe<Message>;
   messages: Array<Message>;
   /** Fetches the Redwood root schema. */
   redwood?: Maybe<Redwood>;
+  user?: Maybe<User>;
+  users: Array<User>;
 };
 
 
@@ -163,6 +197,12 @@ export type QuerygetCitationByNumberAndDriverNameArgs = {
 
 /** About the Redwood queries. */
 export type QuerymessageArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** About the Redwood queries. */
+export type QueryuserArgs = {
   id: Scalars['Int'];
 };
 
@@ -197,6 +237,23 @@ export type UpdateMessageInput = {
   countBefore?: InputMaybe<Scalars['Int']>;
   messageTemplate?: InputMaybe<Scalars['String']>;
   timeUnit?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateUserInput = {
+  citation_id?: InputMaybe<Scalars['Int']>;
+  email?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  phoneNumber?: InputMaybe<Scalars['String']>;
+};
+
+export type User = {
+  __typename?: 'User';
+  citation: Citation;
+  citation_id: Scalars['Int'];
+  email: Scalars['String'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  phoneNumber: Scalars['String'];
 };
 
 export type DeleteCitationMutationVariables = Exact<{
@@ -321,3 +378,44 @@ export type CreateMessageMutationVariables = Exact<{
 
 
 export type CreateMessageMutation = { __typename?: 'Mutation', createMessage: { __typename?: 'Message', id: number } };
+
+export type EditUserByIdVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type EditUserById = { __typename?: 'Query', user?: { __typename?: 'User', id: number, name: string, email: string, phoneNumber: string, citation_id: number } | null };
+
+export type UpdateUserMutationVariables = Exact<{
+  id: Scalars['Int'];
+  input: UpdateUserInput;
+}>;
+
+
+export type UpdateUserMutation = { __typename?: 'Mutation', updateUser: { __typename?: 'User', id: number, name: string, email: string, phoneNumber: string, citation_id: number } };
+
+export type CreateUserMutationVariables = Exact<{
+  input: CreateUserInput;
+}>;
+
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', id: number } };
+
+export type DeleteUserMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteUserMutation = { __typename?: 'Mutation', deleteUser: { __typename?: 'User', id: number } };
+
+export type FindUserByIdVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type FindUserById = { __typename?: 'Query', user?: { __typename?: 'User', id: number, name: string, email: string, phoneNumber: string, citation_id: number } | null };
+
+export type FindUsersVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindUsers = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: number, name: string, email: string, phoneNumber: string, citation_id: number }> };

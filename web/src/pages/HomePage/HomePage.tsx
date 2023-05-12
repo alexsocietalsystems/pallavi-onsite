@@ -4,16 +4,16 @@ import { Form, TextField, Submit } from '@redwoodjs/forms'
 
 const HomePage = () => {
 
-  const FETCH_CITATION = gql`
-  query CreateContactMutation($input: CreateContactInput!) {
-    createContact(input: $input) {
-      id
-    }
-  }
-`
+//   const FETCH_CITATION = gql`
+//   query CreateContactMutation($input: CreateContactInput!) {
+//     createContact(input: $input) {
+//       id
+//     }
+//   }
+// `
 
   const VerifyUser = (data) => {
-    
+
   }
 
   return (
