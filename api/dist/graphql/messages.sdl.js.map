@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/graphql/messages.sdl.ts"],
+  "sourcesContent": ["export const schema = gql`\n  type Message {\n    id: Int!\n    messageTemplate: String!\n    timeUnit: String!\n    countBefore: Int!\n    createdAt: DateTime!\n  }\n\n  type Query {\n    messages: [Message!]! @requireAuth\n    message(id: Int!): Message @requireAuth\n  }\n\n  input CreateMessageInput {\n    messageTemplate: String!\n    timeUnit: String!\n    countBefore: Int!\n  }\n\n  input UpdateMessageInput {\n    messageTemplate: String\n    timeUnit: String\n    countBefore: Int\n  }\n\n  type Mutation {\n    createMessage(input: CreateMessageInput!): Message! @requireAuth\n    updateMessage(id: Int!, input: UpdateMessageInput!): Message! @requireAuth\n    deleteMessage(id: Int!): Message! @requireAuth\n  }\n`\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;yBAAyB;AAAlB,MAAMA,SAASC,mBAAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "names": ["schema", "gql"]
+}
