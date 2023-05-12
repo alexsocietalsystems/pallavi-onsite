@@ -16,12 +16,22 @@ import { useAuth } from './auth'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Set wrap={ScaffoldLayout} title="Citizens" titleTo="citizens" buttonLabel="New Citizen" buttonTo="newCitizen">
+        <Route path="/citizens/new" page={CitizenNewCitizenPage} name="newCitizen" />
+        <Route path="/citizens/{id:Int}/edit" page={CitizenEditCitizenPage} name="editCitizen" />
+        <Route path="/citizens/{id:Int}" page={CitizenCitizenPage} name="citizen" />
+        <Route path="/citizens" page={CitizenCitizensPage} name="citizens" />
+      </Set>
+      <Set wrap={ScaffoldLayout} title="Citizens" titleTo="citizens" buttonLabel="New Citizen" buttonTo="newCitizen">
+      </Set>
+      <Set wrap={ScaffoldLayout} title="Citizens" titleTo="citizens" buttonLabel="New Citizen" buttonTo="newCitizen">
+      </Set>
+      <Set wrap={ScaffoldLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
+      </Set>
+      <Set wrap={ScaffoldLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
+      </Set>
       <Route path="/addInfo/{id}" page={AddInfoPage} name="addInfo" />
       <Set wrap={ScaffoldLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
-        <Route path="/users/new" page={UserNewUserPage} name="newUser" />
-        <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
-        <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
-        <Route path="/users" page={UserUsersPage} name="users" />
       </Set>
       <Route path="/" page={HomePage} name="home" />
       <Set wrap={ScaffoldLayout} title="Courts" titleTo="courts" buttonLabel="New Court" buttonTo="newCourt">

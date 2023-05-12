@@ -7,6 +7,10 @@ import CitationCitationPageType from '/Users/pallavibansal/Documents/GitHub/pall
 import CitationCitationsPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Citation/CitationsPage/CitationsPage'
 import CitationEditCitationPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Citation/EditCitationPage/EditCitationPage'
 import CitationNewCitationPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Citation/NewCitationPage/NewCitationPage'
+import CitizenCitizenPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Citizen/CitizenPage/CitizenPage'
+import CitizenCitizensPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Citizen/CitizensPage/CitizensPage'
+import CitizenEditCitizenPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Citizen/EditCitizenPage/EditCitizenPage'
+import CitizenNewCitizenPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Citizen/NewCitizenPage/NewCitizenPage'
 import CourtCourtPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Court/CourtPage/CourtPage'
 import CourtCourtsPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Court/CourtsPage/CourtsPage'
 import CourtEditCourtPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Court/EditCourtPage/EditCourtPage'
@@ -15,10 +19,6 @@ import MessageEditMessagePageType from '/Users/pallavibansal/Documents/GitHub/pa
 import MessageMessagePageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Message/MessagePage/MessagePage'
 import MessageMessagesPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Message/MessagesPage/MessagesPage'
 import MessageNewMessagePageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/Message/NewMessagePage/NewMessagePage'
-import UserEditUserPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/User/EditUserPage/EditUserPage'
-import UserNewUserPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/User/NewUserPage/NewUserPage'
-import UserUserPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/User/UserPage/UserPage'
-import UserUsersPageType from '/Users/pallavibansal/Documents/GitHub/pallavi-onsite/web/src/pages/User/UsersPage/UsersPage'
 
 declare global {
   const AddInfoPage: typeof AddInfoPageType
@@ -29,6 +29,10 @@ declare global {
   const CitationCitationsPage: typeof CitationCitationsPageType
   const CitationEditCitationPage: typeof CitationEditCitationPageType
   const CitationNewCitationPage: typeof CitationNewCitationPageType
+  const CitizenCitizenPage: typeof CitizenCitizenPageType
+  const CitizenCitizensPage: typeof CitizenCitizensPageType
+  const CitizenEditCitizenPage: typeof CitizenEditCitizenPageType
+  const CitizenNewCitizenPage: typeof CitizenNewCitizenPageType
   const CourtCourtPage: typeof CourtCourtPageType
   const CourtCourtsPage: typeof CourtCourtsPageType
   const CourtEditCourtPage: typeof CourtEditCourtPageType
@@ -37,8 +41,4 @@ declare global {
   const MessageMessagePage: typeof MessageMessagePageType
   const MessageMessagesPage: typeof MessageMessagesPageType
   const MessageNewMessagePage: typeof MessageNewMessagePageType
-  const UserEditUserPage: typeof UserEditUserPageType
-  const UserNewUserPage: typeof UserNewUserPageType
-  const UserUserPage: typeof UserUserPageType
-  const UserUsersPage: typeof UserUsersPageType
 }

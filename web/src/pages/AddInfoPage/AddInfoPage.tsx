@@ -1,23 +1,39 @@
 import { Link, routes } from '@redwoodjs/router'
-import { MetaTags } from '@redwoodjs/web'
+import { MetaTags, useMutation } from '@redwoodjs/web'
 import { Form, TextField, Submit, useForm, CheckboxField } from '@redwoodjs/forms'
-import { useQuery } from '@apollo/client'
+import { useQuery, useLazyQuery } from '@apollo/client'
 import { navigate } from '@redwoodjs/router'
 import { useState, useEffect } from 'react'
+import { toast, Toaster } from '@redwoodjs/web/toast'
 
 const getCitation = gql`
-    query FetchCitationQuery($id: Int!) {
+    query FetchCitationQuery1($id: Int!) {
       citation(id: $id) {
           id
           docket_time
+          driver_name
         }
     }
   `
+
+  const addUserInformation = gql`
+  mutation createUser($input: CreateCitizenInput!) {
+    createCitizen(input: $input) {
+        id
+        name
+      }
+  }
+`
 
 const AddInfoPage = ( {id} ) => {
 
   console.log(id)
   const  {loading, error, data } = useQuery(getCitation, { variables: {id: parseInt(id, 10)}})
+  const  [create, {loading: mutationLoading, error: mutationError, data: mutationData }] = useMutation(addUserInformation,{
+    onCompleted: () => {
+      toast.success('Thank you for your submission!')
+    },
+  })
   const [docketTime, setDocketTime] = useState("");
 
   // useEffect(() => {
@@ -31,19 +47,13 @@ const AddInfoPage = ( {id} ) => {
 
   
 
-  const VerifyUser = (e) => {
-    console.log(e)
-    // const citationNumber = e.citation
-    // const driverName = e.name
-    // citation({ variables: { id: id } })
-
-    // const citationObj = data?.citation?.citation
-    // console.log(citationObj)
-
-    // if (citation != null) {
-    //   console.log("In herereee")
-    //   navigate('/addInfo', {})
-    // }
+  const VerifyUser = (dataObj) => {
+    console.log(dataObj)
+    dataObj.name = data.citation.driver_name 
+    dataObj.citation_id = parseInt(id, 10)
+    console.log(dataObj)
+    create({ variables: { input: dataObj } })
+    
   }
 
   return (
@@ -51,14 +61,14 @@ const AddInfoPage = ( {id} ) => {
       <MetaTags title="AddInfo" description="AddInfo page" />
       <h1>AddInfoPage</h1>
       {data && data.citation && (
-        <p>Scheduled Court Date: + {data.citation.docket_time}</p>
+        <p>Scheduled Court Date: {data.citation.docket_time}</p>
       )}
       <Form onSubmit={VerifyUser} config={{ mode: 'onBlur' }}>
-        <label htmlFor="name">Enter your Email ID</label>
+        <label htmlFor="email">Enter your Email ID</label>
         <TextField name="email" required />
         <button>Verify Email</button>
-        <label htmlFor="name">Enter your Phone Number</label>
-        <TextField name="phone" required />
+        <label htmlFor="phoneNumber">Enter your Phone Number</label>
+        <TextField name="phoneNumber" required />
         <button>Verify Phone</button>
         <CheckboxField name="notifications"></CheckboxField>
         <button type="submit">Verify</button>
