@@ -23,6 +23,7 @@ model Citation {
   citation_number String
   driver_name String
   docket_time DateTime
+  users User[]
   createdAt DateTime @default(now())
 }
 
@@ -32,4 +33,13 @@ model Court {
   court_name String
   citations Citation[]
   createdAt DateTime @default(now())
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String
+  email String
+  phoneNumber String
+  citation_id Int
+  citation Citation @relation(fields: [citation_id], references: [id])
 }
