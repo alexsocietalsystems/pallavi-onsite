@@ -9,12 +9,12 @@ const TopNav = () => {
     <NavLink to={routes.citations()} className="rw-link" activeClassName="rw-heading rw-heading-primary">
       Citations
     </NavLink>
-    <NavLink to={routes.users()} className="rw-link" activeClassName="rw-heading rw-heading-primary">
-      Users
+    <NavLink to={routes.citizens()} className="rw-link" activeClassName="rw-heading rw-heading-primary">
+      Citizens
     </NavLink>
     <NavLink to={routes.home()} className="rw-link" activeClassName="rw-heading rw-heading-primary">
       Home
-    </NavLink> 
+    </NavLink>
   </header>
   )
 }
