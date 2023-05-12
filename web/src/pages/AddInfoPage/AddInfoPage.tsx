@@ -1,6 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
-import { Form, TextField, Submit, useForm } from '@redwoodjs/forms'
+import { Form, TextField, Submit, useForm, CheckboxField } from '@redwoodjs/forms'
 import { useLazyQuery } from '@apollo/client'
 import { navigate } from '@redwoodjs/router'
 
@@ -16,7 +16,7 @@ const getCitation = gql`
     }
   `
 
-const HomePage = () => {
+const AddInfoPage = () => {
 
   const [citation, { loading, error, data }] = useLazyQuery(getCitation)
 
@@ -33,30 +33,25 @@ const HomePage = () => {
       console.log("In herereee")
       navigate('/addInfo') 
     }
-  }
+    }
 
   return (
     <>
-      <MetaTags title="Home" description="Home page" />
+      <MetaTags title="AddInfo" description="AddInfo page" />
 
-      <h1>HomePage</h1>
+      <h1>AddInfoPage</h1>
       <Form onSubmit={VerifyUser} config={{ mode: 'onBlur' }}>
-        <label htmlFor="name">Enter your Citation Number</label>
-        <TextField name="citation" required />
-        <label htmlFor="name">Enter your Name</label>
-        <TextField name="name" required />
-        <Submit>Verify</Submit>
-
+        <label htmlFor="name">Enter your Email ID</label>
+        <TextField name="email" required />
+        <button>Verify Email</button>
+        <label htmlFor="name">Enter your Phone Number</label>
+        <TextField name="phone" required />
+        <button>Verify Phone</button>
+        <CheckboxField name="notifications"></CheckboxField>
+        <button type="submit">Verify</button>
       </Form>
-      {data && !data.getCitationByNumberAndDriverName?.citationExists && (
-        <p>No citation found.</p>
-      )}
-      {data && data.getCitationByNumberAndDriverName?.citationExists &&
-         !data.getCitationByNumberAndDriverName?.citation && (
-        <p>Incorrect details.</p>
-      )}
     </>
   )
 }
 
-export default HomePage
+export default AddInfoPage

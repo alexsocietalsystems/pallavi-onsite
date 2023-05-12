@@ -1,7 +1,9 @@
 {
-  "app.css": "/static/css/app.a529bded.css",
-  "app.js": "/static/js/app.b055c23d.js",
-  "runtime-app.js": "/static/js/runtime-app.5704cff4.js",
+  "app.css": "/static/css/app.4b6d6d3d.css",
+  "app.js": "/static/js/app.8b8716be.js",
+  "runtime-app.js": "/static/js/runtime-app.5588cd82.js",
+  "AddInfoPage.js": "/static/js/AddInfoPage.680ce8a1.chunk.js",
+  "HomePage.js": "/static/js/HomePage.e8e510b6.chunk.js",
   "NotFoundPage.js": "/static/js/NotFoundPage.164d5056.chunk.js",
   "CitationCitationPage.js": "/static/js/CitationCitationPage.0627e170.chunk.js",
   "CitationCitationsPage.js": "/static/js/CitationCitationsPage.0e5f90de.chunk.js",
@@ -16,8 +18,8 @@
   "MessageMessagesPage.js": "/static/js/MessageMessagesPage.4a14d032.chunk.js",
   "MessageNewMessagePage.js": "/static/js/MessageNewMessagePage.2c9b44bd.chunk.js",
   "static/js/988.7ea69105.chunk.js": "/static/js/988.7ea69105.chunk.js",
-  "static/js/759.82b39da4.chunk.js": "/static/js/759.82b39da4.chunk.js",
   "static/js/857.edca4ed8.chunk.js": "/static/js/857.edca4ed8.chunk.js",
+  "static/js/759.82b39da4.chunk.js": "/static/js/759.82b39da4.chunk.js",
   "favicon.png": "/favicon.png",
   "index.html": "/index.html",
   "robots.txt": "/robots.txt"

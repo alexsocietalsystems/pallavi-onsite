@@ -379,6 +379,18 @@ export type CreateMessageMutationVariables = Exact<{
 
 export type CreateMessageMutation = { __typename?: 'Mutation', createMessage: { __typename?: 'Message', id: number } };
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+export type FetchCitationQueryVariables = Exact<{
+  citation_number: Scalars['String'];
+  driver_name: Scalars['String'];
+}>;
+
+
+export type FetchCitationQuery = { __typename?: 'Query', getCitationByNumberAndDriverName?: { __typename?: 'CitationResponse', citationExists: boolean, citation?: { __typename?: 'Citation', id: number, docket_time: string } | null } | null };
+=======
+>>>>>>> Stashed changes
 export type EditUserByIdVariables = Exact<{
   id: Scalars['Int'];
 }>;
@@ -419,3 +431,7 @@ export type FindUsersVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FindUsers = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: number, name: string, email: string, phoneNumber: string, citation_id: number }> };
+<<<<<<< Updated upstream
+=======
+>>>>>>> 5e3d3bfe293d3f0dc064ca3b71c932067622a192
+>>>>>>> Stashed changes
