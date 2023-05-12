@@ -19,21 +19,26 @@ const getCitation = gql`
 
 const HomePage = () => {
 
-  const [citation, { loading, error, data }] = useLazyQuery(getCitation)
+  const [citation, { loading, error, data }] = useLazyQuery(getCitation, {
+    onCompleted: data => {
+      const citationExists = data?.getCitationByNumberAndDriverName?.citationExists
+      const citationObj = data?.getCitationByNumberAndDriverName?.citation
+
+    if (citationExists && citation != null) {
+      console.log("In herereee")
+      navigate('/addInfo/'+citationObj.id,)
+    }
+    }
+  })
 
   const VerifyUser = async (e) => {
 
     const citationNumber = e.citation
     const driverName = e.name
-    await citation({ variables: { citation_number: citationNumber, driver_name: driverName } })
+    citation(
+      { variables: { citation_number: citationNumber, driver_name: driverName } }
+    )
 
-    const citationExists = data?.getCitationByNumberAndDriverName?.citationExists
-    const citationObj = data?.getCitationByNumberAndDriverName?.citation
-
-    if (citationExists && citation != null) {
-      console.log("In herereee")
-      navigate('/addInfo/'+citationObj.id,) 
-    }
   }
 
   return (
@@ -43,7 +48,7 @@ const HomePage = () => {
       <TopNav />
 
       <h1>HomePage</h1>
-      
+
       <Form onSubmit={VerifyUser} config={{ mode: 'onBlur' }}>
         <label htmlFor="name">Enter your Citation Number</label>
         <TextField name="citation" required />
