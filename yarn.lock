@@ -3060,6 +3060,28 @@
     pino "8.14.1"
     title-case "3.0.3"
 
+"@redwoodjs/auth-dbauth-api@5.1.4":
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/auth-dbauth-api/-/auth-dbauth-api-5.1.4.tgz#79517375dda2235262d2c915b4b07e848b84dd60"
+  integrity sha512-BC3NHhNgpQrpSJz2n7Rf+vvAA7NqSsjoIoRVza/ZkKRN8fXauk6wueGwj1dbHa84mH8HkN5FfNlvUv5qKWDphw==
+  dependencies:
+    "@babel/runtime-corejs3" "7.21.5"
+    base64url "3.0.1"
+    core-js "3.30.2"
+    crypto-js "4.1.1"
+    md5 "2.3.0"
+    uuid "9.0.0"
+
+"@redwoodjs/auth-dbauth-web@5.1.4":
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/auth-dbauth-web/-/auth-dbauth-web-5.1.4.tgz#0824a94c643ddb542214474507dfc6f4345a32e8"
+  integrity sha512-seZ6vNJ2XzvTaEeMWpyXn3UN4C1Gd4orMGPXp45KlL+Vi7uFs4kfD/4dJxSZzpsNpaJtM3iI1lRCbej+M4Riqg==
+  dependencies:
+    "@babel/runtime-corejs3" "7.21.5"
+    "@redwoodjs/auth" "5.1.4"
+    "@simplewebauthn/browser" "7.2.0"
+    core-js "3.30.2"
+
 "@redwoodjs/auth@5.1.4":
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/@redwoodjs/auth/-/auth-5.1.4.tgz#78b84bfedb938151dcdb2f41f07ce6c46c07697b"
@@ -3443,6 +3465,18 @@
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@repeaterjs/repeater/-/repeater-3.0.4.tgz#a04d63f4d1bf5540a41b01a921c9a7fddc3bd1ca"
   integrity sha512-AW8PKd6iX3vAZ0vA43nOUOnbq/X5ihgU+mSXXqunMkeQADGiqw/PY0JNeYtD5sr0PAy51YPgAPbDoeapv9r8WA==
+
+"@simplewebauthn/browser@7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@simplewebauthn/browser/-/browser-7.2.0.tgz#cb959290469d14b2f33e15156439e20caf539fc7"
+  integrity sha512-HHIvRPpqKy0UV/BsGAmx4rQRZuZTUFYLLH65FwpSOslqHruiHx3Ql/bq7A75bjWuJ296a+4BIAq3+SPaII01TQ==
+  dependencies:
+    "@simplewebauthn/typescript-types" "*"
+
+"@simplewebauthn/typescript-types@*":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@simplewebauthn/typescript-types/-/typescript-types-7.0.0.tgz#887178424220524e71c10ae4548fbb353ed58ae6"
+  integrity sha512-bV+xACCFTsrLR/23ozHO06ZllHZaxC8LlI5YCo79GvU2BrN+rePDU2yXwZIYndNWcMQwRdndRdAhpafOh9AC/g==
 
 "@sinclair/typebox@^0.25.16":
   version "0.25.24"
@@ -6446,6 +6480,11 @@ base64-js@^1.0.2, base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
+base64url@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/base64url/-/base64url-3.0.1.tgz#6399d572e2bc3f90a9a8b22d5dbb0a32d33f788d"
+  integrity sha512-ir1UPr3dkwexU7FdV8qBBbNDRUhMmIekYMFZfi+C/sLNnRESKPl23nB9b2pltqfOQNnGzsDdId90AEtG5tCx4A==
+
 base@^0.11.1:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/base/-/base-0.11.2.tgz#7bde5ced145b6d551a90db87f83c558b4eb48a8f"
@@ -7095,6 +7134,11 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
+
+charenc@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
+  integrity sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==
 
 checkpoint-client@1.1.23:
   version "1.1.23"
@@ -7817,6 +7861,11 @@ cross-spawn@^6.0.0:
     semver "^5.5.0"
     shebang-command "^1.2.0"
     which "^1.2.9"
+
+crypt@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/crypt/-/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
+  integrity sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
@@ -11072,7 +11121,7 @@ is-boolean-object@^1.1.0:
     call-bind "^1.0.2"
     has-tostringtag "^1.0.0"
 
-is-buffer@^1.1.5:
+is-buffer@^1.1.5, is-buffer@~1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
@@ -12745,6 +12794,15 @@ md5.js@^1.3.4:
     hash-base "^3.0.0"
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
+
+md5@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/md5/-/md5-2.3.0.tgz#c3da9a6aae3a30b46b7b0c349b87b110dc3bda4f"
+  integrity sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==
+  dependencies:
+    charenc "0.0.2"
+    crypt "0.0.2"
+    is-buffer "~1.1.6"
 
 mdast-squeeze-paragraphs@^4.0.0:
   version "4.0.0"
