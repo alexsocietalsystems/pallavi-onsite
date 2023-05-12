@@ -6,6 +6,10 @@ import { A } from 'ts-toolbelt'
 declare module '@redwoodjs/router' {
   interface AvailableRoutes {
     // Only "<Route />" components with a "name" and "path" prop will be populated here.
+    login: (params?: RouteParams<"/login"> & QueryParams) => "/login"
+    signup: (params?: RouteParams<"/signup"> & QueryParams) => "/signup"
+    forgotPassword: (params?: RouteParams<"/forgot-password"> & QueryParams) => "/forgot-password"
+    resetPassword: (params?: RouteParams<"/reset-password"> & QueryParams) => "/reset-password"
     newCitizen: (params?: RouteParams<"/citizens/new"> & QueryParams) => "/citizens/new"
     editCitizen: (params?: RouteParams<"/citizens/{id:Int}/edit"> & QueryParams) => "/citizens/{id:Int}/edit"
     citizen: (params?: RouteParams<"/citizens/{id:Int}"> & QueryParams) => "/citizens/{id:Int}"

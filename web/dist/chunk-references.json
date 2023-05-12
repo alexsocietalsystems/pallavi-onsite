@@ -4,20 +4,29 @@
     "id": 143,
     "files": [
       "/static/css/app.4b6d6d3d.css",
-      "/static/js/app.8b8716be.js"
+      "/static/js/app.b2b0614e.js"
     ],
     "referencedChunks": [
       838,
-      912,
       988,
       857,
+      912,
+      761,
+      96,
       460,
+      789,
       754,
+      753,
+      213,
       759,
       217,
       419,
       960,
       990,
+      55,
+      48,
+      81,
+      823,
       114,
       851,
       607,
@@ -32,20 +41,29 @@
     "name": "runtime-app",
     "id": 838,
     "files": [
-      "/static/js/runtime-app.5588cd82.js"
+      "/static/js/runtime-app.635b673a.js"
     ],
     "referencedChunks": [
       143,
-      912,
       988,
       857,
+      912,
+      761,
+      96,
       460,
+      789,
       754,
+      753,
+      213,
       759,
       217,
       419,
       960,
       990,
+      55,
+      48,
+      81,
+      823,
       114,
       851,
       607,
@@ -60,19 +78,47 @@
     "name": "AddInfoPage",
     "id": 912,
     "files": [
-      "/static/js/AddInfoPage.680ce8a1.chunk.js"
+      "/static/js/AddInfoPage.6b546058.chunk.js"
     ],
-    "referencedChunks": []
+    "referencedChunks": [
+      988,
+      857
+    ]
+  },
+  {
+    "name": "ForgotPasswordPage",
+    "id": 96,
+    "files": [
+      "/static/js/ForgotPasswordPage.d351498f.chunk.js"
+    ],
+    "referencedChunks": [
+      988,
+      857,
+      761
+    ]
   },
   {
     "name": "HomePage",
     "id": 460,
     "files": [
-      "/static/js/HomePage.e8e510b6.chunk.js"
+      "/static/js/HomePage.cbd13141.chunk.js"
     ],
     "referencedChunks": [
       988,
-      857
+      857,
+      761
+    ]
+  },
+  {
+    "name": "LoginPage",
+    "id": 789,
+    "files": [
+      "/static/js/LoginPage.3325af5a.chunk.js"
+    ],
+    "referencedChunks": [
+      988,
+      857,
+      761
     ]
   },
   {
@@ -84,10 +130,34 @@
     "referencedChunks": []
   },
   {
+    "name": "ResetPasswordPage",
+    "id": 753,
+    "files": [
+      "/static/js/ResetPasswordPage.086be79f.chunk.js"
+    ],
+    "referencedChunks": [
+      988,
+      857,
+      761
+    ]
+  },
+  {
+    "name": "SignupPage",
+    "id": 213,
+    "files": [
+      "/static/js/SignupPage.20993c35.chunk.js"
+    ],
+    "referencedChunks": [
+      988,
+      857,
+      761
+    ]
+  },
+  {
     "name": "CitationCitationPage",
     "id": 217,
     "files": [
-      "/static/js/CitationCitationPage.0627e170.chunk.js"
+      "/static/js/CitationCitationPage.69bfca22.chunk.js"
     ],
     "referencedChunks": [
       988,
@@ -98,7 +168,7 @@
     "name": "CitationCitationsPage",
     "id": 419,
     "files": [
-      "/static/js/CitationCitationsPage.0e5f90de.chunk.js"
+      "/static/js/CitationCitationsPage.8a085cad.chunk.js"
     ],
     "referencedChunks": [
       988,
@@ -128,10 +198,54 @@
     ]
   },
   {
+    "name": "CitizenCitizenPage",
+    "id": 55,
+    "files": [
+      "/static/js/CitizenCitizenPage.7127db02.chunk.js"
+    ],
+    "referencedChunks": [
+      988,
+      759
+    ]
+  },
+  {
+    "name": "CitizenCitizensPage",
+    "id": 48,
+    "files": [
+      "/static/js/CitizenCitizensPage.a0084834.chunk.js"
+    ],
+    "referencedChunks": [
+      988,
+      759
+    ]
+  },
+  {
+    "name": "CitizenEditCitizenPage",
+    "id": 81,
+    "files": [
+      "/static/js/CitizenEditCitizenPage.c2585a49.chunk.js"
+    ],
+    "referencedChunks": [
+      988,
+      857
+    ]
+  },
+  {
+    "name": "CitizenNewCitizenPage",
+    "id": 823,
+    "files": [
+      "/static/js/CitizenNewCitizenPage.ee48660c.chunk.js"
+    ],
+    "referencedChunks": [
+      988,
+      857
+    ]
+  },
+  {
     "name": "CourtCourtPage",
     "id": 114,
     "files": [
-      "/static/js/CourtCourtPage.71c8d647.chunk.js"
+      "/static/js/CourtCourtPage.78020565.chunk.js"
     ],
     "referencedChunks": [
       988,
@@ -142,7 +256,7 @@
     "name": "CourtCourtsPage",
     "id": 851,
     "files": [
-      "/static/js/CourtCourtsPage.6118d4f2.chunk.js"
+      "/static/js/CourtCourtsPage.8262da75.chunk.js"
     ],
     "referencedChunks": [
       988,
@@ -186,7 +300,7 @@
     "name": "MessageMessagePage",
     "id": 742,
     "files": [
-      "/static/js/MessageMessagePage.76328959.chunk.js"
+      "/static/js/MessageMessagePage.29e285e2.chunk.js"
     ],
     "referencedChunks": [
       988,
@@ -197,7 +311,7 @@
     "name": "MessageMessagesPage",
     "id": 762,
     "files": [
-      "/static/js/MessageMessagesPage.4a14d032.chunk.js"
+      "/static/js/MessageMessagesPage.6d86c19c.chunk.js"
     ],
     "referencedChunks": [
       988,
@@ -222,12 +336,22 @@
     ],
     "referencedChunks": [
       857,
+      912,
+      761,
+      96,
       460,
+      789,
+      753,
+      213,
       759,
       217,
       419,
       960,
       990,
+      55,
+      48,
+      81,
+      823,
       114,
       851,
       607,
@@ -245,9 +369,17 @@
     ],
     "referencedChunks": [
       988,
+      912,
+      761,
+      96,
       460,
+      789,
+      753,
+      213,
       960,
       990,
+      81,
+      823,
       607,
       370,
       877,
@@ -263,10 +395,27 @@
       988,
       217,
       419,
+      55,
+      48,
       114,
       851,
       742,
       762
+    ]
+  },
+  {
+    "id": 761,
+    "files": [
+      "/static/js/761.bb315c23.chunk.js"
+    ],
+    "referencedChunks": [
+      988,
+      857,
+      96,
+      460,
+      789,
+      753,
+      213
     ]
   }
 ]
