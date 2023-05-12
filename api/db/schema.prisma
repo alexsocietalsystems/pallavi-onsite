@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -30,6 +30,6 @@ model Court {
   id        Int      @id @default(autoincrement())
   street_address String
   court_name String
-  citations Citation[] 
+  citations Citation[]
   createdAt DateTime @default(now())
 }
