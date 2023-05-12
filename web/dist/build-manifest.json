@@ -1,10 +1,10 @@
 {
   "app.css": "/static/css/app.4b6d6d3d.css",
-  "app.js": "/static/js/app.b2b0614e.js",
-  "runtime-app.js": "/static/js/runtime-app.635b673a.js",
+  "app.js": "/static/js/app.4fb44044.js",
+  "runtime-app.js": "/static/js/runtime-app.055a4275.js",
   "AddInfoPage.js": "/static/js/AddInfoPage.6b546058.chunk.js",
   "ForgotPasswordPage.js": "/static/js/ForgotPasswordPage.d351498f.chunk.js",
-  "HomePage.js": "/static/js/HomePage.cbd13141.chunk.js",
+  "HomePage.js": "/static/js/HomePage.b8397f4d.chunk.js",
   "LoginPage.js": "/static/js/LoginPage.3325af5a.chunk.js",
   "NotFoundPage.js": "/static/js/NotFoundPage.164d5056.chunk.js",
   "ResetPasswordPage.js": "/static/js/ResetPasswordPage.086be79f.chunk.js",

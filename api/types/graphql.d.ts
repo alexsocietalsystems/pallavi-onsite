@@ -279,7 +279,7 @@ export type UpdateMessageInput = {
 };
 
 type MaybeOrArrayOfMaybe<T> = T | Maybe<T> | Maybe<T>[];
-type AllMappedModels = MaybeOrArrayOfMaybe<Citation | Citizen | Court | Message>
+type AllMappedModels = MaybeOrArrayOfMaybe<Citation | Court | Message>
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -365,6 +365,8 @@ export type ResolversTypes = {
   UpdateCitizenInput: UpdateCitizenInput;
   UpdateCourtInput: UpdateCourtInput;
   UpdateMessageInput: UpdateMessageInput;
+  UpdateUserInput: UpdateUserInput;
+  User: ResolverTypeWrapper<Omit<User, 'citation'> & { citation: ResolversTypes['Citation'] }>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -394,6 +396,8 @@ export type ResolversParentTypes = {
   UpdateCitizenInput: UpdateCitizenInput;
   UpdateCourtInput: UpdateCourtInput;
   UpdateMessageInput: UpdateMessageInput;
+  UpdateUserInput: UpdateUserInput;
+  User: Omit<User, 'citation'> & { citation: ResolversParentTypes['Citation'] };
 };
 
 export type requireAuthDirectiveArgs = {
