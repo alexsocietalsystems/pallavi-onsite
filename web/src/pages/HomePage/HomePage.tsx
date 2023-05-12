@@ -1,8 +1,9 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
-import { Form, TextField, Submit, useForm } from '@redwoodjs/forms'
+//import { Form, TextField, Submit, useForm } from '@redwoodjs/forms'
 import { useLazyQuery } from '@apollo/client'
 import { navigate } from '@redwoodjs/router'
+import { Form, TextInput, Button, Grid, Column, FormGroup } from '@carbon/react';
 
 const getCitation = gql`
     query FetchCitationQuery($citation_number: String!, $driver_name: String!) {
@@ -31,30 +32,43 @@ const HomePage = () => {
 
     if (citationExists && citation != null) {
       console.log("In herereee")
-      navigate('/addInfo/'+citationObj.id,) 
+      navigate('/addInfo/' + citationObj.id,)
     }
   }
 
   return (
     <>
       <MetaTags title="Home" description="Home page" />
+      <Grid fullWidth style={{ marginTop: "10%" }}>
+        <Column lg={5} md={8} sm={4}>
+        </Column>
+        <Column lg={6} md={8} sm={4}>
+          <div>
+            <Form onSubmit={VerifyUser}>
+            <FormGroup legendText="">
+              <TextInput name="citation" labelText="Enter Citation Number" required />
+              <TextInput name="name" labelText="Enter Driver Name" required /> <br></br>
+              <Button type="submit">Verify</Button>
+              </FormGroup>
+            </Form>
+          </div>
 
-      <h1>HomePage</h1>
-      <Form onSubmit={VerifyUser} config={{ mode: 'onBlur' }}>
-        <label htmlFor="name">Enter your Citation Number</label>
-        <TextField name="citation" required />
-        <label htmlFor="name">Enter your Name</label>
-        <TextField name="name" required />
-        <Submit>Verify</Submit>
 
-      </Form>
+        </Column>
+        <Column lg={5} style={{ marginRight: "5%" }} disabled={true}>
+          <div   >
+            
+          </div>
+        </Column>
+      </Grid>
+
       {data && !data.getCitationByNumberAndDriverName?.citationExists && (
         <p>No citation found.</p>
       )}
       {data && data.getCitationByNumberAndDriverName?.citationExists &&
-         !data.getCitationByNumberAndDriverName?.citation && (
-        <p>Incorrect details.</p>
-      )}
+        !data.getCitationByNumberAndDriverName?.citation && (
+          <p>Incorrect details.</p>
+        )}
     </>
   )
 }
