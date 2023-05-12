@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/graphql/citizens.sdl.ts"],
-  "sourcesContent": ["export const schema = gql`\n  type Citizen {\n    id: Int!\n    name: String!\n    email: String!\n    phoneNumber: String!\n    citation_id: Int!\n    citation: Citation!\n    notifications: Boolean!\n  }\n\n  type Query {\n    citizens: [Citizen!]! @requireAuth\n    citizen(id: Int!): Citizen @requireAuth\n  }\n\n  input CreateCitizenInput {\n    name: String!\n    email: String!\n    phoneNumber: String!\n    citation_id: Int!\n    notifications: Boolean!\n  }\n\n  input UpdateCitizenInput {\n    name: String\n    email: String\n    phoneNumber: String\n    citation_id: Int\n    notifications: Boolean\n  }\n\n  type Mutation {\n    createCitizen(input: CreateCitizenInput!): Citizen! @requireAuth\n    updateCitizen(id: Int!, input: UpdateCitizenInput!): Citizen! @requireAuth\n    deleteCitizen(id: Int!): Citizen! @requireAuth\n  }\n`\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;yBAAyB;AAAlB,MAAMA,SAASC,mBAAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
-  "names": ["schema", "gql"]
-}
