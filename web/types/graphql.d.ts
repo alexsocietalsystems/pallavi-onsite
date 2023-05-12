@@ -134,6 +134,7 @@ export type Query = {
   citations: Array<Citation>;
   court?: Maybe<Court>;
   courts: Array<Court>;
+  getCitationByNumberAndDriverName?: Maybe<Citation>;
   message?: Maybe<Message>;
   messages: Array<Message>;
   /** Fetches the Redwood root schema. */
@@ -150,6 +151,13 @@ export type QuerycitationArgs = {
 /** About the Redwood queries. */
 export type QuerycourtArgs = {
   id: Scalars['Int'];
+};
+
+
+/** About the Redwood queries. */
+export type QuerygetCitationByNumberAndDriverNameArgs = {
+  citationNumber: Scalars['String'];
+  driverName: Scalars['String'];
 };
 
 

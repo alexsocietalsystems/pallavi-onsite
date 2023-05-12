@@ -42,9 +42,15 @@ const schema = import_graphql_tag.default`
     createdAt: DateTime!
   }
 
+  type CitationResponse { 
+    citation: Citation
+    citationExists: Boolean!
+  }
+
   type Query {
     citations: [Citation!]! @requireAuth
     citation(id: Int!): Citation @requireAuth
+    getCitationByNumberAndDriverName(citationNumber: String!, driverName: String!): CitationResponse @requireAuth
   }
 
   input CreateCitationInput {

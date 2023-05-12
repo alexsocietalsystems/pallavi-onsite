@@ -7,6 +7,7 @@ import type {
 import { db } from 'src/lib/db'
 
 export const citations: QueryResolvers['citations'] = () => {
+  console.log("Getting called 123")
   return db.citation.findMany()
 }
 
@@ -15,6 +16,28 @@ export const citation: QueryResolvers['citation'] = ({ id }) => {
     where: { id },
   })
 }
+
+export const getCitationByNumberAndDriverName: QueryResolvers['getCitationByNumberAndDriverName'] =  async ({ citationNumber, driverName }) => {
+  console.log("Getting called")
+  const citation_num = await db.citation.findFirst({
+    where: { 
+      citation_number: citationNumber },
+  })
+  console.log(citation_num)
+  if(citation_num == null){
+    return { citation: null, citationExists: false }
+  }
+  const citation =  db.citation.findFirst({
+    where: {
+      citation_number: citationNumber,
+      driver_name: driverName,
+    },
+    include: {
+      court: true,
+    },
+  });
+  return { citation: citation, citationExists: true }
+};
 
 export const createCitation: MutationResolvers['createCitation'] = ({
   input,

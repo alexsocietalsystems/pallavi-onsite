@@ -12,6 +12,7 @@ export type ResolverFn<TResult, TParent, TContext, TArgs> = (
       args?: TArgs,
       obj?: { root: TParent; context: TContext; info: GraphQLResolveInfo }
     ) => TResult | Promise<TResult>
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 export type OptArgsResolverFn<TResult, TParent = {}, TContext = {}, TArgs = {}> = (
       args?: TArgs,
@@ -46,6 +47,12 @@ export type Citation = {
   docket_time: Scalars['DateTime'];
   driver_name: Scalars['String'];
   id: Scalars['Int'];
+};
+
+export type CitationResponse = {
+  __typename?: 'CitationResponse';
+  citation?: Maybe<Citation>;
+  citationExists: Scalars['Boolean'];
 };
 
 export type Court = {
@@ -152,6 +159,7 @@ export type Query = {
   citations: Array<Citation>;
   court?: Maybe<Court>;
   courts: Array<Court>;
+  getCitationByNumberAndDriverName?: Maybe<CitationResponse>;
   message?: Maybe<Message>;
   messages: Array<Message>;
   /** Fetches the Redwood root schema. */
@@ -168,6 +176,13 @@ export type QuerycitationArgs = {
 /** About the Redwood queries. */
 export type QuerycourtArgs = {
   id: Scalars['Int'];
+};
+
+
+/** About the Redwood queries. */
+export type QuerygetCitationByNumberAndDriverNameArgs = {
+  citationNumber: Scalars['String'];
+  driverName: Scalars['String'];
 };
 
 
@@ -274,6 +289,7 @@ export type ResolversTypes = {
   BigInt: ResolverTypeWrapper<Scalars['BigInt']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Citation: ResolverTypeWrapper<MergePrismaWithSdlTypes<PrismaCitation, MakeRelationsOptional<Citation, AllMappedModels>, AllMappedModels>>;
+  CitationResponse: ResolverTypeWrapper<Omit<CitationResponse, 'citation'> & { citation: Maybe<ResolversTypes['Citation']> }>;
   Court: ResolverTypeWrapper<MergePrismaWithSdlTypes<PrismaCourt, MakeRelationsOptional<Court, AllMappedModels>, AllMappedModels>>;
   CreateCitationInput: CreateCitationInput;
   CreateCourtInput: CreateCourtInput;
@@ -299,6 +315,7 @@ export type ResolversParentTypes = {
   BigInt: Scalars['BigInt'];
   Boolean: Scalars['Boolean'];
   Citation: MergePrismaWithSdlTypes<PrismaCitation, MakeRelationsOptional<Citation, AllMappedModels>, AllMappedModels>;
+  CitationResponse: Omit<CitationResponse, 'citation'> & { citation: Maybe<ResolversParentTypes['Citation']> };
   Court: MergePrismaWithSdlTypes<PrismaCourt, MakeRelationsOptional<Court, AllMappedModels>, AllMappedModels>;
   CreateCitationInput: CreateCitationInput;
   CreateCourtInput: CreateCourtInput;
@@ -352,6 +369,18 @@ export type CitationRelationResolvers<ContextType = RedwoodGraphQLContext, Paren
   docket_time?: RequiredResolverFn<ResolversTypes['DateTime'], ParentType, ContextType>;
   driver_name?: RequiredResolverFn<ResolversTypes['String'], ParentType, ContextType>;
   id?: RequiredResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CitationResponseResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['CitationResponse'] = ResolversParentTypes['CitationResponse']> = {
+  citation: OptArgsResolverFn<Maybe<ResolversTypes['Citation']>, ParentType, ContextType>;
+  citationExists: OptArgsResolverFn<ResolversTypes['Boolean'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CitationResponseRelationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['CitationResponse'] = ResolversParentTypes['CitationResponse']> = {
+  citation?: RequiredResolverFn<Maybe<ResolversTypes['Citation']>, ParentType, ContextType>;
+  citationExists?: RequiredResolverFn<ResolversTypes['Boolean'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -436,6 +465,7 @@ export type QueryResolvers<ContextType = RedwoodGraphQLContext, ParentType exten
   citations: OptArgsResolverFn<Array<ResolversTypes['Citation']>, ParentType, ContextType>;
   court: Resolver<Maybe<ResolversTypes['Court']>, ParentType, ContextType, RequireFields<QuerycourtArgs, 'id'>>;
   courts: OptArgsResolverFn<Array<ResolversTypes['Court']>, ParentType, ContextType>;
+  getCitationByNumberAndDriverName: Resolver<Maybe<ResolversTypes['CitationResponse']>, ParentType, ContextType, RequireFields<QuerygetCitationByNumberAndDriverNameArgs, 'citationNumber' | 'driverName'>>;
   message: Resolver<Maybe<ResolversTypes['Message']>, ParentType, ContextType, RequireFields<QuerymessageArgs, 'id'>>;
   messages: OptArgsResolverFn<Array<ResolversTypes['Message']>, ParentType, ContextType>;
   redwood: OptArgsResolverFn<Maybe<ResolversTypes['Redwood']>, ParentType, ContextType>;
@@ -446,6 +476,7 @@ export type QueryRelationResolvers<ContextType = RedwoodGraphQLContext, ParentTy
   citations?: RequiredResolverFn<Array<ResolversTypes['Citation']>, ParentType, ContextType>;
   court?: RequiredResolverFn<Maybe<ResolversTypes['Court']>, ParentType, ContextType, RequireFields<QuerycourtArgs, 'id'>>;
   courts?: RequiredResolverFn<Array<ResolversTypes['Court']>, ParentType, ContextType>;
+  getCitationByNumberAndDriverName?: RequiredResolverFn<Maybe<ResolversTypes['CitationResponse']>, ParentType, ContextType, RequireFields<QuerygetCitationByNumberAndDriverNameArgs, 'citationNumber' | 'driverName'>>;
   message?: RequiredResolverFn<Maybe<ResolversTypes['Message']>, ParentType, ContextType, RequireFields<QuerymessageArgs, 'id'>>;
   messages?: RequiredResolverFn<Array<ResolversTypes['Message']>, ParentType, ContextType>;
   redwood?: RequiredResolverFn<Maybe<ResolversTypes['Redwood']>, ParentType, ContextType>;
@@ -472,6 +503,7 @@ export interface TimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 export type Resolvers<ContextType = RedwoodGraphQLContext> = {
   BigInt: GraphQLScalarType;
   Citation: CitationResolvers<ContextType>;
+  CitationResponse: CitationResponseResolvers<ContextType>;
   Court: CourtResolvers<ContextType>;
   Date: GraphQLScalarType;
   DateTime: GraphQLScalarType;

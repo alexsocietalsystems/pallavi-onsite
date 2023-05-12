@@ -19,6 +19,11 @@ type Citation {
   id: Int!
 }
 
+type CitationResponse {
+  citation: Citation
+  citationExists: Boolean!
+}
+
 type Court {
   citations: [Citation]!
   court_name: String!
@@ -79,6 +84,7 @@ type Query {
   citations: [Citation!]!
   court(id: Int!): Court
   courts: [Court!]!
+  getCitationByNumberAndDriverName(citationNumber: String!, driverName: String!): CitationResponse
   message(id: Int!): Message
   messages: [Message!]!
 

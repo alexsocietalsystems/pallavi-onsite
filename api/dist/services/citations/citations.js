@@ -22,11 +22,13 @@ __export(citations_exports, {
   citations: () => citations,
   createCitation: () => createCitation,
   deleteCitation: () => deleteCitation,
+  getCitationByNumberAndDriverName: () => getCitationByNumberAndDriverName,
   updateCitation: () => updateCitation
 });
 module.exports = __toCommonJS(citations_exports);
 var import_db = require("../../lib/db");
 const citations = () => {
+  console.log("Getting called 123");
   return import_db.db.citation.findMany();
 };
 const citation = ({
@@ -37,6 +39,37 @@ const citation = ({
       id
     }
   });
+};
+const getCitationByNumberAndDriverName = async ({
+  citationNumber,
+  driverName
+}) => {
+  console.log("Getting called");
+  const citation_num = await import_db.db.citation.findFirst({
+    where: {
+      citation_number: citationNumber
+    }
+  });
+  console.log(citation_num);
+  if (citation_num == null) {
+    return {
+      citation: null,
+      citationExists: false
+    };
+  }
+  const citation2 = import_db.db.citation.findFirst({
+    where: {
+      citation_number: citationNumber,
+      driver_name: driverName
+    },
+    include: {
+      court: true
+    }
+  });
+  return {
+    citation: citation2,
+    citationExists: true
+  };
 };
 const createCitation = ({
   input
@@ -83,6 +116,7 @@ const Citation = {
   citations,
   createCitation,
   deleteCitation,
+  getCitationByNumberAndDriverName,
   updateCitation
 });
 //# sourceMappingURL=citations.js.map
