@@ -20,18 +20,18 @@ const HomePage = () => {
 
   const [citation, { loading, error, data }] = useLazyQuery(getCitation)
 
-  const VerifyUser = (e) => {
-    console.log(e)
+  const VerifyUser = async (e) => {
+
     const citationNumber = e.citation
     const driverName = e.name
-    citation({ variables: { citation_number: citationNumber, driver_name: driverName } })
+    await citation({ variables: { citation_number: citationNumber, driver_name: driverName } })
 
     const citationExists = data?.getCitationByNumberAndDriverName?.citationExists
     const citationObj = data?.getCitationByNumberAndDriverName?.citation
 
     if (citationExists && citation != null) {
       console.log("In herereee")
-      navigate('/addInfo') 
+      navigate('/addInfo/'+citationObj.id,) 
     }
   }
 

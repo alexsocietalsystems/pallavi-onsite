@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client"
 import { MergePrismaWithSdlTypes, MakeRelationsOptional } from '@redwoodjs/api'
-import { Message as PrismaMessage, Citation as PrismaCitation, Court as PrismaCourt, User as PrismaUser } from '@prisma/client'
+import { Message as PrismaMessage, Citation as PrismaCitation, Court as PrismaCourt } from '@prisma/client'
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/functions/types';
 export type Maybe<T> = T | null;
@@ -276,7 +276,7 @@ export type User = {
 };
 
 type MaybeOrArrayOfMaybe<T> = T | Maybe<T> | Maybe<T>[];
-type AllMappedModels = MaybeOrArrayOfMaybe<Citation | Court | Message | User>
+type AllMappedModels = MaybeOrArrayOfMaybe<Citation | Court | Message>
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -361,7 +361,7 @@ export type ResolversTypes = {
   UpdateCourtInput: UpdateCourtInput;
   UpdateMessageInput: UpdateMessageInput;
   UpdateUserInput: UpdateUserInput;
-  User: ResolverTypeWrapper<MergePrismaWithSdlTypes<PrismaUser, MakeRelationsOptional<User, AllMappedModels>, AllMappedModels>>;
+  User: ResolverTypeWrapper<Omit<User, 'citation'> & { citation: ResolversTypes['Citation'] }>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -390,7 +390,7 @@ export type ResolversParentTypes = {
   UpdateCourtInput: UpdateCourtInput;
   UpdateMessageInput: UpdateMessageInput;
   UpdateUserInput: UpdateUserInput;
-  User: MergePrismaWithSdlTypes<PrismaUser, MakeRelationsOptional<User, AllMappedModels>, AllMappedModels>;
+  User: Omit<User, 'citation'> & { citation: ResolversParentTypes['Citation'] };
 };
 
 export type requireAuthDirectiveArgs = {
