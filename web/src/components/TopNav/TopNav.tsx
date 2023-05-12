@@ -14,6 +14,12 @@ const TopNav = () => {
     </NavLink>
     <NavLink to={routes.home()} className="rw-link" activeClassName="rw-heading rw-heading-primary">
       Home
+    </NavLink> 
+    <NavLink to={routes.login()} className="rw-link" activeClassName="rw-heading rw-heading-primary">
+      Login
+    </NavLink>
+    <NavLink to={routes.signup()} className="rw-link" activeClassName="rw-heading rw-heading-primary">
+      Sign up
     </NavLink>
   </header>
   )
