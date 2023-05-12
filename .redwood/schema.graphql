@@ -9,6 +9,36 @@ directive @skipAuth on FIELD_DEFINITION
 
 scalar BigInt
 
+type Citation {
+  citation_number: String!
+  court: Court!
+  court_id: Int!
+  createdAt: DateTime!
+  docket_time: DateTime!
+  driver_name: String!
+  id: Int!
+}
+
+type Court {
+  citations: [Citation]!
+  court_name: String!
+  createdAt: DateTime!
+  id: Int!
+  street_address: String!
+}
+
+input CreateCitationInput {
+  citation_number: String!
+  court_id: Int!
+  docket_time: DateTime!
+  driver_name: String!
+}
+
+input CreateCourtInput {
+  court_name: String!
+  street_address: String!
+}
+
 input CreateMessageInput {
   countBefore: Int!
   messageTemplate: String!
@@ -32,13 +62,23 @@ type Message {
 }
 
 type Mutation {
+  createCitation(input: CreateCitationInput!): Citation!
+  createCourt(input: CreateCourtInput!): Court!
   createMessage(input: CreateMessageInput!): Message!
+  deleteCitation(id: Int!): Citation!
+  deleteCourt(id: Int!): Court!
   deleteMessage(id: Int!): Message!
+  updateCitation(id: Int!, input: UpdateCitationInput!): Citation!
+  updateCourt(id: Int!, input: UpdateCourtInput!): Court!
   updateMessage(id: Int!, input: UpdateMessageInput!): Message!
 }
 
 """About the Redwood queries."""
 type Query {
+  citation(id: Int!): Citation
+  citations: [Citation!]!
+  court(id: Int!): Court
+  courts: [Court!]!
   message(id: Int!): Message
   messages: [Message!]!
 
@@ -63,6 +103,18 @@ type Redwood {
 }
 
 scalar Time
+
+input UpdateCitationInput {
+  citation_number: String
+  court_id: Int
+  docket_time: DateTime
+  driver_name: String
+}
+
+input UpdateCourtInput {
+  court_name: String
+  street_address: String
+}
 
 input UpdateMessageInput {
   countBefore: Int

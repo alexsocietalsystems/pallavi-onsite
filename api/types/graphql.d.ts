@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client"
 import { MergePrismaWithSdlTypes, MakeRelationsOptional } from '@redwoodjs/api'
-import { Message as PrismaMessage } from '@prisma/client'
+import { Message as PrismaMessage, Citation as PrismaCitation, Court as PrismaCourt } from '@prisma/client'
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/functions/types';
 export type Maybe<T> = T | null;
@@ -37,6 +37,38 @@ export type Scalars = {
   Time: Date | string;
 };
 
+export type Citation = {
+  __typename?: 'Citation';
+  citation_number: Scalars['String'];
+  court: Court;
+  court_id: Scalars['Int'];
+  createdAt: Scalars['DateTime'];
+  docket_time: Scalars['DateTime'];
+  driver_name: Scalars['String'];
+  id: Scalars['Int'];
+};
+
+export type Court = {
+  __typename?: 'Court';
+  citations: Array<Maybe<Citation>>;
+  court_name: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['Int'];
+  street_address: Scalars['String'];
+};
+
+export type CreateCitationInput = {
+  citation_number: Scalars['String'];
+  court_id: Scalars['Int'];
+  docket_time: Scalars['DateTime'];
+  driver_name: Scalars['String'];
+};
+
+export type CreateCourtInput = {
+  court_name: Scalars['String'];
+  street_address: Scalars['String'];
+};
+
 export type CreateMessageInput = {
   countBefore: Scalars['Int'];
   messageTemplate: Scalars['String'];
@@ -54,9 +86,25 @@ export type Message = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createCitation: Citation;
+  createCourt: Court;
   createMessage: Message;
+  deleteCitation: Citation;
+  deleteCourt: Court;
   deleteMessage: Message;
+  updateCitation: Citation;
+  updateCourt: Court;
   updateMessage: Message;
+};
+
+
+export type MutationcreateCitationArgs = {
+  input: CreateCitationInput;
+};
+
+
+export type MutationcreateCourtArgs = {
+  input: CreateCourtInput;
 };
 
 
@@ -65,8 +113,30 @@ export type MutationcreateMessageArgs = {
 };
 
 
+export type MutationdeleteCitationArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationdeleteCourtArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type MutationdeleteMessageArgs = {
   id: Scalars['Int'];
+};
+
+
+export type MutationupdateCitationArgs = {
+  id: Scalars['Int'];
+  input: UpdateCitationInput;
+};
+
+
+export type MutationupdateCourtArgs = {
+  id: Scalars['Int'];
+  input: UpdateCourtInput;
 };
 
 
@@ -78,10 +148,26 @@ export type MutationupdateMessageArgs = {
 /** About the Redwood queries. */
 export type Query = {
   __typename?: 'Query';
+  citation?: Maybe<Citation>;
+  citations: Array<Citation>;
+  court?: Maybe<Court>;
+  courts: Array<Court>;
   message?: Maybe<Message>;
   messages: Array<Message>;
   /** Fetches the Redwood root schema. */
   redwood?: Maybe<Redwood>;
+};
+
+
+/** About the Redwood queries. */
+export type QuerycitationArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** About the Redwood queries. */
+export type QuerycourtArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -105,6 +191,18 @@ export type Redwood = {
   version?: Maybe<Scalars['String']>;
 };
 
+export type UpdateCitationInput = {
+  citation_number?: InputMaybe<Scalars['String']>;
+  court_id?: InputMaybe<Scalars['Int']>;
+  docket_time?: InputMaybe<Scalars['DateTime']>;
+  driver_name?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateCourtInput = {
+  court_name?: InputMaybe<Scalars['String']>;
+  street_address?: InputMaybe<Scalars['String']>;
+};
+
 export type UpdateMessageInput = {
   countBefore?: InputMaybe<Scalars['Int']>;
   messageTemplate?: InputMaybe<Scalars['String']>;
@@ -112,7 +210,7 @@ export type UpdateMessageInput = {
 };
 
 type MaybeOrArrayOfMaybe<T> = T | Maybe<T> | Maybe<T>[];
-type AllMappedModels = MaybeOrArrayOfMaybe<Message>
+type AllMappedModels = MaybeOrArrayOfMaybe<Citation | Court | Message>
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -175,6 +273,10 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   BigInt: ResolverTypeWrapper<Scalars['BigInt']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Citation: ResolverTypeWrapper<MergePrismaWithSdlTypes<PrismaCitation, MakeRelationsOptional<Citation, AllMappedModels>, AllMappedModels>>;
+  Court: ResolverTypeWrapper<MergePrismaWithSdlTypes<PrismaCourt, MakeRelationsOptional<Court, AllMappedModels>, AllMappedModels>>;
+  CreateCitationInput: CreateCitationInput;
+  CreateCourtInput: CreateCourtInput;
   CreateMessageInput: CreateMessageInput;
   Date: ResolverTypeWrapper<Scalars['Date']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
@@ -187,6 +289,8 @@ export type ResolversTypes = {
   Redwood: ResolverTypeWrapper<Redwood>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Time: ResolverTypeWrapper<Scalars['Time']>;
+  UpdateCitationInput: UpdateCitationInput;
+  UpdateCourtInput: UpdateCourtInput;
   UpdateMessageInput: UpdateMessageInput;
 };
 
@@ -194,6 +298,10 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   BigInt: Scalars['BigInt'];
   Boolean: Scalars['Boolean'];
+  Citation: MergePrismaWithSdlTypes<PrismaCitation, MakeRelationsOptional<Citation, AllMappedModels>, AllMappedModels>;
+  Court: MergePrismaWithSdlTypes<PrismaCourt, MakeRelationsOptional<Court, AllMappedModels>, AllMappedModels>;
+  CreateCitationInput: CreateCitationInput;
+  CreateCourtInput: CreateCourtInput;
   CreateMessageInput: CreateMessageInput;
   Date: Scalars['Date'];
   DateTime: Scalars['DateTime'];
@@ -206,6 +314,8 @@ export type ResolversParentTypes = {
   Redwood: Redwood;
   String: Scalars['String'];
   Time: Scalars['Time'];
+  UpdateCitationInput: UpdateCitationInput;
+  UpdateCourtInput: UpdateCourtInput;
   UpdateMessageInput: UpdateMessageInput;
 };
 
@@ -222,6 +332,46 @@ export type skipAuthDirectiveResolver<Result, Parent, ContextType = RedwoodGraph
 export interface BigIntScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['BigInt'], any> {
   name: 'BigInt';
 }
+
+export type CitationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Citation'] = ResolversParentTypes['Citation']> = {
+  citation_number: OptArgsResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  court: OptArgsResolverFn<ResolversTypes['Court'], ParentType, ContextType>;
+  court_id: OptArgsResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  createdAt: OptArgsResolverFn<ResolversTypes['DateTime'], ParentType, ContextType>;
+  docket_time: OptArgsResolverFn<ResolversTypes['DateTime'], ParentType, ContextType>;
+  driver_name: OptArgsResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  id: OptArgsResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CitationRelationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Citation'] = ResolversParentTypes['Citation']> = {
+  citation_number?: RequiredResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  court?: RequiredResolverFn<ResolversTypes['Court'], ParentType, ContextType>;
+  court_id?: RequiredResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  createdAt?: RequiredResolverFn<ResolversTypes['DateTime'], ParentType, ContextType>;
+  docket_time?: RequiredResolverFn<ResolversTypes['DateTime'], ParentType, ContextType>;
+  driver_name?: RequiredResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  id?: RequiredResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CourtResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Court'] = ResolversParentTypes['Court']> = {
+  citations: OptArgsResolverFn<Array<Maybe<ResolversTypes['Citation']>>, ParentType, ContextType>;
+  court_name: OptArgsResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  createdAt: OptArgsResolverFn<ResolversTypes['DateTime'], ParentType, ContextType>;
+  id: OptArgsResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  street_address: OptArgsResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CourtRelationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Court'] = ResolversParentTypes['Court']> = {
+  citations?: RequiredResolverFn<Array<Maybe<ResolversTypes['Citation']>>, ParentType, ContextType>;
+  court_name?: RequiredResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  createdAt?: RequiredResolverFn<ResolversTypes['DateTime'], ParentType, ContextType>;
+  id?: RequiredResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  street_address?: RequiredResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
 
 export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
   name: 'Date';
@@ -258,24 +408,44 @@ export type MessageRelationResolvers<ContextType = RedwoodGraphQLContext, Parent
 };
 
 export type MutationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  createCitation: Resolver<ResolversTypes['Citation'], ParentType, ContextType, RequireFields<MutationcreateCitationArgs, 'input'>>;
+  createCourt: Resolver<ResolversTypes['Court'], ParentType, ContextType, RequireFields<MutationcreateCourtArgs, 'input'>>;
   createMessage: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationcreateMessageArgs, 'input'>>;
+  deleteCitation: Resolver<ResolversTypes['Citation'], ParentType, ContextType, RequireFields<MutationdeleteCitationArgs, 'id'>>;
+  deleteCourt: Resolver<ResolversTypes['Court'], ParentType, ContextType, RequireFields<MutationdeleteCourtArgs, 'id'>>;
   deleteMessage: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationdeleteMessageArgs, 'id'>>;
+  updateCitation: Resolver<ResolversTypes['Citation'], ParentType, ContextType, RequireFields<MutationupdateCitationArgs, 'id' | 'input'>>;
+  updateCourt: Resolver<ResolversTypes['Court'], ParentType, ContextType, RequireFields<MutationupdateCourtArgs, 'id' | 'input'>>;
   updateMessage: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationupdateMessageArgs, 'id' | 'input'>>;
 };
 
 export type MutationRelationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  createCitation?: RequiredResolverFn<ResolversTypes['Citation'], ParentType, ContextType, RequireFields<MutationcreateCitationArgs, 'input'>>;
+  createCourt?: RequiredResolverFn<ResolversTypes['Court'], ParentType, ContextType, RequireFields<MutationcreateCourtArgs, 'input'>>;
   createMessage?: RequiredResolverFn<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationcreateMessageArgs, 'input'>>;
+  deleteCitation?: RequiredResolverFn<ResolversTypes['Citation'], ParentType, ContextType, RequireFields<MutationdeleteCitationArgs, 'id'>>;
+  deleteCourt?: RequiredResolverFn<ResolversTypes['Court'], ParentType, ContextType, RequireFields<MutationdeleteCourtArgs, 'id'>>;
   deleteMessage?: RequiredResolverFn<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationdeleteMessageArgs, 'id'>>;
+  updateCitation?: RequiredResolverFn<ResolversTypes['Citation'], ParentType, ContextType, RequireFields<MutationupdateCitationArgs, 'id' | 'input'>>;
+  updateCourt?: RequiredResolverFn<ResolversTypes['Court'], ParentType, ContextType, RequireFields<MutationupdateCourtArgs, 'id' | 'input'>>;
   updateMessage?: RequiredResolverFn<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationupdateMessageArgs, 'id' | 'input'>>;
 };
 
 export type QueryResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  citation: Resolver<Maybe<ResolversTypes['Citation']>, ParentType, ContextType, RequireFields<QuerycitationArgs, 'id'>>;
+  citations: OptArgsResolverFn<Array<ResolversTypes['Citation']>, ParentType, ContextType>;
+  court: Resolver<Maybe<ResolversTypes['Court']>, ParentType, ContextType, RequireFields<QuerycourtArgs, 'id'>>;
+  courts: OptArgsResolverFn<Array<ResolversTypes['Court']>, ParentType, ContextType>;
   message: Resolver<Maybe<ResolversTypes['Message']>, ParentType, ContextType, RequireFields<QuerymessageArgs, 'id'>>;
   messages: OptArgsResolverFn<Array<ResolversTypes['Message']>, ParentType, ContextType>;
   redwood: OptArgsResolverFn<Maybe<ResolversTypes['Redwood']>, ParentType, ContextType>;
 };
 
 export type QueryRelationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  citation?: RequiredResolverFn<Maybe<ResolversTypes['Citation']>, ParentType, ContextType, RequireFields<QuerycitationArgs, 'id'>>;
+  citations?: RequiredResolverFn<Array<ResolversTypes['Citation']>, ParentType, ContextType>;
+  court?: RequiredResolverFn<Maybe<ResolversTypes['Court']>, ParentType, ContextType, RequireFields<QuerycourtArgs, 'id'>>;
+  courts?: RequiredResolverFn<Array<ResolversTypes['Court']>, ParentType, ContextType>;
   message?: RequiredResolverFn<Maybe<ResolversTypes['Message']>, ParentType, ContextType, RequireFields<QuerymessageArgs, 'id'>>;
   messages?: RequiredResolverFn<Array<ResolversTypes['Message']>, ParentType, ContextType>;
   redwood?: RequiredResolverFn<Maybe<ResolversTypes['Redwood']>, ParentType, ContextType>;
@@ -301,6 +471,8 @@ export interface TimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 
 export type Resolvers<ContextType = RedwoodGraphQLContext> = {
   BigInt: GraphQLScalarType;
+  Citation: CitationResolvers<ContextType>;
+  Court: CourtResolvers<ContextType>;
   Date: GraphQLScalarType;
   DateTime: GraphQLScalarType;
   JSON: GraphQLScalarType;

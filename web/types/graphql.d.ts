@@ -19,6 +19,38 @@ export type Scalars = {
   Time: string;
 };
 
+export type Citation = {
+  __typename?: 'Citation';
+  citation_number: Scalars['String'];
+  court: Court;
+  court_id: Scalars['Int'];
+  createdAt: Scalars['DateTime'];
+  docket_time: Scalars['DateTime'];
+  driver_name: Scalars['String'];
+  id: Scalars['Int'];
+};
+
+export type Court = {
+  __typename?: 'Court';
+  citations: Array<Maybe<Citation>>;
+  court_name: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['Int'];
+  street_address: Scalars['String'];
+};
+
+export type CreateCitationInput = {
+  citation_number: Scalars['String'];
+  court_id: Scalars['Int'];
+  docket_time: Scalars['DateTime'];
+  driver_name: Scalars['String'];
+};
+
+export type CreateCourtInput = {
+  court_name: Scalars['String'];
+  street_address: Scalars['String'];
+};
+
 export type CreateMessageInput = {
   countBefore: Scalars['Int'];
   messageTemplate: Scalars['String'];
@@ -36,9 +68,25 @@ export type Message = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createCitation: Citation;
+  createCourt: Court;
   createMessage: Message;
+  deleteCitation: Citation;
+  deleteCourt: Court;
   deleteMessage: Message;
+  updateCitation: Citation;
+  updateCourt: Court;
   updateMessage: Message;
+};
+
+
+export type MutationcreateCitationArgs = {
+  input: CreateCitationInput;
+};
+
+
+export type MutationcreateCourtArgs = {
+  input: CreateCourtInput;
 };
 
 
@@ -47,8 +95,30 @@ export type MutationcreateMessageArgs = {
 };
 
 
+export type MutationdeleteCitationArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationdeleteCourtArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type MutationdeleteMessageArgs = {
   id: Scalars['Int'];
+};
+
+
+export type MutationupdateCitationArgs = {
+  id: Scalars['Int'];
+  input: UpdateCitationInput;
+};
+
+
+export type MutationupdateCourtArgs = {
+  id: Scalars['Int'];
+  input: UpdateCourtInput;
 };
 
 
@@ -60,10 +130,26 @@ export type MutationupdateMessageArgs = {
 /** About the Redwood queries. */
 export type Query = {
   __typename?: 'Query';
+  citation?: Maybe<Citation>;
+  citations: Array<Citation>;
+  court?: Maybe<Court>;
+  courts: Array<Court>;
   message?: Maybe<Message>;
   messages: Array<Message>;
   /** Fetches the Redwood root schema. */
   redwood?: Maybe<Redwood>;
+};
+
+
+/** About the Redwood queries. */
+export type QuerycitationArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** About the Redwood queries. */
+export type QuerycourtArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -87,11 +173,105 @@ export type Redwood = {
   version?: Maybe<Scalars['String']>;
 };
 
+export type UpdateCitationInput = {
+  citation_number?: InputMaybe<Scalars['String']>;
+  court_id?: InputMaybe<Scalars['Int']>;
+  docket_time?: InputMaybe<Scalars['DateTime']>;
+  driver_name?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateCourtInput = {
+  court_name?: InputMaybe<Scalars['String']>;
+  street_address?: InputMaybe<Scalars['String']>;
+};
+
 export type UpdateMessageInput = {
   countBefore?: InputMaybe<Scalars['Int']>;
   messageTemplate?: InputMaybe<Scalars['String']>;
   timeUnit?: InputMaybe<Scalars['String']>;
 };
+
+export type DeleteCitationMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteCitationMutation = { __typename?: 'Mutation', deleteCitation: { __typename?: 'Citation', id: number } };
+
+export type FindCitationByIdVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type FindCitationById = { __typename?: 'Query', citation?: { __typename?: 'Citation', id: number, court_id: number, citation_number: string, driver_name: string, docket_time: string, createdAt: string } | null };
+
+export type FindCitationsVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindCitations = { __typename?: 'Query', citations: Array<{ __typename?: 'Citation', id: number, court_id: number, citation_number: string, driver_name: string, docket_time: string, createdAt: string }> };
+
+export type EditCitationByIdVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type EditCitationById = { __typename?: 'Query', citation?: { __typename?: 'Citation', id: number, court_id: number, citation_number: string, driver_name: string, docket_time: string, createdAt: string } | null };
+
+export type UpdateCitationMutationVariables = Exact<{
+  id: Scalars['Int'];
+  input: UpdateCitationInput;
+}>;
+
+
+export type UpdateCitationMutation = { __typename?: 'Mutation', updateCitation: { __typename?: 'Citation', id: number, court_id: number, citation_number: string, driver_name: string, docket_time: string, createdAt: string } };
+
+export type CreateCitationMutationVariables = Exact<{
+  input: CreateCitationInput;
+}>;
+
+
+export type CreateCitationMutation = { __typename?: 'Mutation', createCitation: { __typename?: 'Citation', id: number } };
+
+export type DeleteCourtMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteCourtMutation = { __typename?: 'Mutation', deleteCourt: { __typename?: 'Court', id: number } };
+
+export type FindCourtByIdVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type FindCourtById = { __typename?: 'Query', court?: { __typename?: 'Court', id: number, street_address: string, court_name: string, createdAt: string } | null };
+
+export type FindCourtsVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindCourts = { __typename?: 'Query', courts: Array<{ __typename?: 'Court', id: number, street_address: string, court_name: string, createdAt: string }> };
+
+export type EditCourtByIdVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type EditCourtById = { __typename?: 'Query', court?: { __typename?: 'Court', id: number, street_address: string, court_name: string, createdAt: string } | null };
+
+export type UpdateCourtMutationVariables = Exact<{
+  id: Scalars['Int'];
+  input: UpdateCourtInput;
+}>;
+
+
+export type UpdateCourtMutation = { __typename?: 'Mutation', updateCourt: { __typename?: 'Court', id: number, street_address: string, court_name: string, createdAt: string } };
+
+export type CreateCourtMutationVariables = Exact<{
+  input: CreateCourtInput;
+}>;
+
+
+export type CreateCourtMutation = { __typename?: 'Mutation', createCourt: { __typename?: 'Court', id: number } };
 
 export type EditMessageByIdVariables = Exact<{
   id: Scalars['Int'];

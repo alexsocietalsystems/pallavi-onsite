@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/graphql/citations.sdl.ts"],
+  "sourcesContent": ["export const schema = gql`\n  type Citation {\n    id: Int!\n    court_id: Int!\n    court: Court!\n    citation_number: String!\n    driver_name: String!\n    docket_time: DateTime!\n    createdAt: DateTime!\n  }\n\n  type Query {\n    citations: [Citation!]! @requireAuth\n    citation(id: Int!): Citation @requireAuth\n  }\n\n  input CreateCitationInput {\n    court_id: Int!\n    citation_number: String!\n    driver_name: String!\n    docket_time: DateTime!\n  }\n\n  input UpdateCitationInput {\n    court_id: Int\n    citation_number: String\n    driver_name: String\n    docket_time: DateTime\n  }\n\n  type Mutation {\n    createCitation(input: CreateCitationInput!): Citation! @requireAuth\n    updateCitation(id: Int!, input: UpdateCitationInput!): Citation!\n      @requireAuth\n    deleteCitation(id: Int!): Citation! @requireAuth\n  }\n`\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;yBAAyB;AAAlB,MAAMA,SAASC,mBAAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "names": ["schema", "gql"]
+}

@@ -15,3 +15,21 @@ model Message {
   countBefore Int
   createdAt DateTime @default(now())
 }
+
+model Citation {
+  id        Int      @id @default(autoincrement())
+  court_id Int
+  court   Court @relation(fields: [court_id], references: [id])
+  citation_number String
+  driver_name String
+  docket_time DateTime
+  createdAt DateTime @default(now())
+}
+
+model Court {
+  id        Int      @id @default(autoincrement())
+  street_address String
+  court_name String
+  citations Citation[] 
+  createdAt DateTime @default(now())
+}
